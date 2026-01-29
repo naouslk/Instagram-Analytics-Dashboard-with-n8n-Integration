@@ -2,10 +2,9 @@ import { ApiResponse, AnalyticsData, InstagramProfile, InstagramPost } from '../
 import { MOCK_DATA } from './mockData';
 
 // Configuration for n8n Webhook
-// Update NGROK_URL when the tunnel restarts
-const NGROK_URL = 'https://33e145d5261a.ngrok-free.app';
-const WEBHOOK_PATH = '/webhook/088828e2-4ab8-43f6-97fd-0dd0fd77a326';
-const N8N_WEBHOOK_URL = `${NGROK_URL}${WEBHOOK_PATH}`;
+// The URL is now loaded from the environment variable VITE_N8N_WEBHOOK_URL
+// You can configure this in the .env file in the project root
+const N8N_WEBHOOK_URL = (import.meta as any).env?.VITE_N8N_WEBHOOK_URL || 'https://33e145d5261a.ngrok-free.app/webhook/088828e2-4ab8-43f6-97fd-0dd0fd77a326';
 
 // Helper to transform raw n8n data into our app's expected format
 const transformToAnalyticsData = (username: string, rawData: any): AnalyticsData => {
